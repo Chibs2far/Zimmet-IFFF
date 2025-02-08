@@ -3,11 +3,16 @@ import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
-    <div className="w-64 bg-gray-700 text-white h-screen fixed">
-      <div className="p-6 text-xl font-bold">
-        <Link to="/">Device Management</Link>
+    <div className="w-64 bg-gray-700 text-white h-screen fixed flex flex-col">
+      {/* LOGO KISMI */}
+      <div className="p-6 flex justify-center">
+        <Link to="/">
+          <img src="/images/logo.png" alt="Logo" className="h-12 w-auto" />
+        </Link>
       </div>
-      <nav className="mt-6">
+
+      {/* MENÜ KISMI */}
+      <nav className="mt-4 flex-grow">
         <ul>
           <li className="p-4 hover:bg-gray-600">
             <Link to="/">📋 Device List</Link>

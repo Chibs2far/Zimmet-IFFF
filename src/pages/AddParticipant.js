@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AddParticipant = ({ onAddParticipant }) => {
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [approved, setApproved] = useState(false);
 
@@ -12,11 +13,12 @@ const AddParticipant = ({ onAddParticipant }) => {
     e.preventDefault();
     const newParticipant = {
       id: crypto.randomUUID(),
-      name,
+      firstName,
+      lastName,
       email,
       approved,
       joinedAt: new Date().toISOString(),
-      assignedDevice: null
+      assignedDevices: []
     };
     onAddParticipant(newParticipant);
     navigate('/participants');
@@ -29,12 +31,23 @@ const AddParticipant = ({ onAddParticipant }) => {
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block mb-2 text-sm font-medium">Full Name</label>
+          <label className="block mb-2 text-sm font-medium">First Name</label>
           <input 
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Enter full name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            placeholder="Enter first name"
+            className="w-full p-2 border rounded-md focus:ring-2 focus:ring-[#FFB347]"
+            required
+          />
+        </div>
+        <div>
+          <label className="block mb-2 text-sm font-medium">Last Name</label>
+          <input 
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            placeholder="Enter last name"
             className="w-full p-2 border rounded-md focus:ring-2 focus:ring-[#FFB347]"
             required
           />
